@@ -1,30 +1,32 @@
-//ƒfƒtƒHƒ‹ƒg‚ÌDressSW.txt (–{—ˆ‚ÍŠeProject‚ÉDressSW.txt‚ğì¬‚µ‚Ä‰º‚³‚¢@Ú×‚ÍDressSW‚ÌReadmeQÆ)
-//ƒtƒ‰ƒbƒg2
+// ¥Ç¥Õ¥©¥ë¥È¤ÎDressSW.txt (ËÜÍè¤Ï³ÆProject¤ËDressSW.txt¤òºîÀ®¤·¤Æ²¼¤µ¤¤¡¡¾ÜºÙ¤ÏDressSW¤ÎReadme»²¾È)
+// ¥Õ¥é¥Ã¥È2
 parka,3,/parka
 pants,2,/pants
-//ƒRƒ‚ƒh
+// ¥³¥â¥É
 clothing,2,/clothing
-//ƒwƒIƒ“
+// ¥Ø¥ª¥ó
 Hat,2,/Hat
 Jacket,2,/jacket
 Shoes,2,/shoes
-//ƒLƒ…[ƒt
+// ¥­¥å¡¼¥Õ
 tail cover,2,/clothing
 cloth,2,/clothing2
-//’…•¨4
+// (ninginbatake)¥Õ¥é¥Ã¥È¤¯¤óÀìÍÑ¥¹¥¯¡¼¥ë¿åÃå
+Chibanyan/Swimsuit/SW,1,Flat Swimsuit/Cube
+// (pandrabox)ÃåÊª4
 Pan/Kimono4/Switch,1,Kimono4/Kimono
-//ƒJƒWƒ…ƒAƒ‹1
+// (pandrabox)¥«¥¸¥å¥¢¥ë1
 Pan/Casual1/Zubbon,1,Casual1/Zubbon
 Pan/Casual1/Shirt,1,Casual1/Shirt
-//ƒnƒƒEƒBƒ“
+// (pandrabox)¥Ï¥í¥¦¥£¥ó
 Halloween1,1,Halloween1/Anklet,Halloween1/Circlet,Halloween1/Cloth,Halloween1/Hat,Halloween1/HatRibbon,Halloween1/Ribbon
-//xmas3 ¦belt‚ÌParam‚Í‘¶İ‚µ‚È‚¢‚ªƒfƒtƒHƒ‹ƒg•ÏX‚¾‚¯‰Â”\‚È‚æ‚¤‚É’è‹`
+// (pandrabox)xmas3 ¢¨belt¤ÎParam¤ÏÂ¸ºß¤·¤Ê¤¤¤¬¥Ç¥Õ¥©¥ë¥ÈÊÑ¹¹¤À¤±²ÄÇ½¤Ê¤è¤¦¤ËÄêµÁ
 pan/xmas3/zubbon,1,*_xmas3/zubbon
 pan/xmas3/inner,1,*_xmas3/inner
 pan/xmas3/hat,1,*_xmas3/hat
 pan/xmas3/outer,1,*_xmas3/outer
 !pan/xmas3/belt,1,*_xmas3/belt
-//ŒÑ3
+// (pandrabox)¸Ó3
 Pan/Hakama3/Nagagi,1,*_Haori3/nagagi
 Pan/Hakama3/Hakama,1,*_Haori3/hakama
 Pan/Hakama3/Haori,1,*_Haori3/haori
