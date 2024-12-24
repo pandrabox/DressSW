@@ -84,7 +84,7 @@ namespace com.github.pandrabox.dresssw.editor
                 if (Type == 1 || Type == 2)
                 {
                     item.gameObject.SetActive(Enable);
-                    Debug.LogWarning(item.name);
+                    //Debug.LogWarning(item.name);
                 }
                 if (Type == 3)
                 {
