@@ -1,0 +1,30 @@
+//デフォルトのDressSW.txt (本来は各ProjectにDressSW.txtを作成して下さい　詳細はDressSWのReadme参照)
+//フラット2
+parka,3,/parka
+pants,2,/pants
+//コモド
+clothing,2,/clothing
+//ヘオン
+Hat,2,/Hat
+Jacket,2,/jacket
+Shoes,2,/shoes
+//キューフ
+tail cover,2,/clothing
+cloth,2,/clothing2
+//着物4
+Pan/Kimono4/Switch,1,Kimono4/Kimono
+//カジュアル1
+Pan/Casual1/Zubbon,1,Casual1/Zubbon
+Pan/Casual1/Shirt,1,Casual1/Shirt
+//ハロウィン
+Halloween1,1,Halloween1/Anklet,Halloween1/Circlet,Halloween1/Cloth,Halloween1/Hat,Halloween1/HatRibbon,Halloween1/Ribbon
+//xmas3 ※beltのParamは存在しないがデフォルト変更だけ可能なように定義
+pan/xmas3/zubbon,1,*_xmas3/zubbon
+pan/xmas3/inner,1,*_xmas3/inner
+pan/xmas3/hat,1,*_xmas3/hat
+pan/xmas3/outer,1,*_xmas3/outer
+!pan/xmas3/belt,1,*_xmas3/belt
+//袴3
+Pan/Hakama3/Nagagi,1,*_Haori3/nagagi
+Pan/Hakama3/Hakama,1,*_Haori3/hakama
+Pan/Hakama3/Haori,1,*_Haori3/haori
