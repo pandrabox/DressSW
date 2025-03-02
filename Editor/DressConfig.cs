@@ -17,9 +17,10 @@ namespace com.github.pandrabox.dresssw.editor
     /// DressSWのフォーマットは次の通りですkey,type,values
     ///     key…ExpressionParameter名
     ///     type…制御タイプのint
-    ///         1…MAParametersで定義、Object-Activeで制御
+    ///         1…MAParametersで定義、Object-Activeで制御[1が有効,0が無効]
     ///         2…ExpressionParametersで定義、Object-Activeで制御
     ///         3…ExpressionParametersで定義、SkinnedMeshRenderersで制御
+    ///         4…MAParametersで定義、Object-Activeで制御[0が有効,1が無効]
     ///     values…
     ///         オブジェクトのパス。
     ///         ワイルドカード*が使用可能。
@@ -60,8 +61,10 @@ namespace com.github.pandrabox.dresssw.editor
             try
             {
                 var lines = File.ReadAllLines(filePath);
+
                 foreach (var line in lines)
                 {
+                    Debug.Log(line);
                     if (!line.Contains(',')) continue; // コンマを持たない行は無視
                     if (line.StartsWith("//")) continue; // // で始まる行は無視
                     var parts = line.Split(',');

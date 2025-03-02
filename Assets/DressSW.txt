@@ -37,3 +37,7 @@ pan/xmas3/outer,1,*_xmas3/outer
 Pan/Hakama3/Nagagi,1,*_Haori3/nagagi
 Pan/Hakama3/Hakama,1,*_Haori3/hakama
 Pan/Hakama3/Haori,1,*_Haori3/haori
+// t1gersoda
+Tora/Kemocyber/Hoodie,4,*_KemoCyber/パーカー
+Tora/Kemocyber/Pants,4,*_KemoCyber/ズボン
+Tora/Kemocyber/Shirt,4,*_KemoCyber/シャツ

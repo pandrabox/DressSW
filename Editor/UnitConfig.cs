@@ -29,7 +29,7 @@ namespace com.github.pandrabox.dresssw.editor
             Key = key;
             Type = type;
             Items = items;
-            if (Type==1 || Type==2)
+            if (Type==1 || Type==2 || Type==4)
             {
                 Enable = TargetTransforms().FirstOrDefault()?.gameObject?.activeSelf ?? false;
             }
@@ -44,7 +44,7 @@ namespace com.github.pandrabox.dresssw.editor
         {
             if (TargetTransforms().Count == 0) return false;
             if (Key.StartsWith("!")) return true;
-            if (Type == 1)
+            if (Type == 1 || Type == 4)
             {
                 ModularAvatarParameters[] MAParams = Descriptor.transform.GetComponentsInChildren<ModularAvatarParameters>();
                 foreach (var param in MAParams)
@@ -61,8 +61,8 @@ namespace com.github.pandrabox.dresssw.editor
             }
             else if (Type==2 || Type==3)
             {
-
                 VRCExpressionParameters ExParams = Descriptor.expressionParameters;
+                if(ExParams == null) return false;
                 for (int i = 0; i < ExParams.parameters.Length; i++)
                 {
                     var param = ExParams.parameters[i];
@@ -81,7 +81,7 @@ namespace com.github.pandrabox.dresssw.editor
             // 初期状態そのものの設定
             foreach (var item in TargetTransforms())
             {
-                if (Type == 1 || Type == 2)
+                if (Type == 1 || Type == 2 || Type == 4)
                 {
                     item.gameObject.SetActive(Enable);
                     //Debug.LogWarning(item.name);
@@ -92,7 +92,7 @@ namespace com.github.pandrabox.dresssw.editor
                 }
             }
             // Parameter初期値の設定
-            if (Type == 1)
+            if (Type == 1 || Type == 4)
             {
                 ModularAvatarParameters[] MAParams = Descriptor.transform.GetComponentsInChildren<ModularAvatarParameters>();
                 foreach (var param in MAParams)
@@ -103,6 +103,7 @@ namespace com.github.pandrabox.dresssw.editor
                         if (p.nameOrPrefix == Key)
                         {
                             p.defaultValue = Enable ? 1 : 0;
+                            if (Type == 4) p.defaultValue = 1 - p.defaultValue;
                             param.parameters[i] = p;
                             EditorUtility.SetDirty(param);
                         }
@@ -118,8 +119,13 @@ namespace com.github.pandrabox.dresssw.editor
                     if (param.name == Key)
                     {
                         param.defaultValue = Enable ? 1 : 0;
+                        EditorUtility.SetDirty(ExParams);
+                        AssetDatabase.SaveAssets();
+                        AssetDatabase.Refresh();
                     }
                 }
+                Descriptor.expressionParameters = null;
+                Descriptor.expressionParameters = ExParams;
             }
         }
 
