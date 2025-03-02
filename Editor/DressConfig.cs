@@ -8,6 +8,7 @@ using UnityEditor;
 using VRC.SDK3.Avatars.Components;
 using nadena.dev.modular_avatar.core;
 using VRC.SDK3.Avatars.ScriptableObjects;
+using UnityEditor.Animations;
 
 namespace com.github.pandrabox.dresssw.editor
 {
@@ -43,6 +44,86 @@ namespace com.github.pandrabox.dresssw.editor
             {
                 ParseFile(file);
             }
+            NormalizeDefaultState();
+        }
+
+        /// <summary>
+        /// Type2,3へ干渉するギミックを無効化
+        /// </summary>
+        private void NormalizeDefaultState()
+        {
+            var type23s = Configs.Where(x => x.Type == 2 || x.Type == 3);
+            var type23Keys = type23s.Select(x => x.Key).ToList();
+            var mamas = Descriptor.GetComponentsInChildren<ModularAvatarMergeAnimator>(true);
+            foreach (var mama in mamas)
+            {
+                var controller = (AnimatorController)mama.animator;
+                var states = controller?.layers?.SelectMany(x => x.stateMachine.states)?.Select(x => x.state)
+                    .Where(state => state.behaviours.OfType<VRCAvatarParameterDriver>().Any()).ToList();
+                foreach (var state in states)
+                {
+                    var driver = state.behaviours.OfType<VRCAvatarParameterDriver>().FirstOrDefault();
+                    if (driver == null) continue;
+                    for (int i = driver.parameters.Count - 1; i >= 0; i--)
+                    {
+                        if (type23Keys.Contains(driver.parameters[i].name))
+                        {
+                            driver.parameters.RemoveAt(i);
+                            PrefabUtility.UnpackPrefabInstance(mama.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+                        }
+                    }
+                }
+
+                for (int i = controller.parameters.Length - 1; i >= 0; i--)
+                {
+                    if (type23Keys.Contains(controller.parameters[i].name))
+                    {
+                        controller.RemoveParameter(controller.parameters[i]);
+                        PrefabUtility.UnpackPrefabInstance(mama.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+                    }
+                }
+            }
+            var animators = Descriptor.GetComponentsInChildren<Animator>(true);
+            foreach (var animator in animators)
+            {
+                var controller = animator.runtimeAnimatorController as AnimatorController;
+                if (controller == null) continue;
+                var states = controller.layers.SelectMany(x => x.stateMachine.states).Select(x => x.state)
+                    .Where(state => state.behaviours.OfType<VRCAvatarParameterDriver>().Any()).ToList();
+                foreach (var state in states)
+                {
+                    var driver = state.behaviours.OfType<VRCAvatarParameterDriver>().FirstOrDefault();
+                    if (driver == null) continue;
+                    for (int i = driver.parameters.Count - 1; i >= 0; i--)
+                    {
+                        if (type23Keys.Contains(driver.parameters[i].name))
+                        {
+                            driver.parameters.RemoveAt(i);
+                            PrefabUtility.UnpackPrefabInstance(animator.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+                        }
+                    }
+                }
+                for (int i = controller.parameters.Length - 1; i >= 0; i--)
+                {
+                    if (type23Keys.Contains(controller.parameters[i].name))
+                    {
+                        controller.RemoveParameter(controller.parameters[i]);
+                        PrefabUtility.UnpackPrefabInstance(animator.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+                    }
+                }
+            }
+            var maps = Descriptor.GetComponentsInChildren<ModularAvatarParameters>(true);
+            foreach (var map in maps)
+            {
+                for (int i = map.parameters.Count - 1; i >= 0; i--)
+                {
+                    if (type23Keys.Contains(map.parameters[i].nameOrPrefix))
+                    {
+                        map.parameters.RemoveAt(i);
+                        PrefabUtility.UnpackPrefabInstance(map.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+                    }
+                }
+            }
         }
 
         static string[] GetFilesRecursively(string directoryPath, string fileName)
@@ -64,7 +145,7 @@ namespace com.github.pandrabox.dresssw.editor
 
                 foreach (var line in lines)
                 {
-                    Debug.Log(line);
+                    //Debug.Log(line);
                     if (!line.Contains(',')) continue; // コンマを持たない行は無視
                     if (line.StartsWith("//")) continue; // // で始まる行は無視
                     var parts = line.Split(',');
