@@ -11,6 +11,10 @@ Shoes,2,/shoes
 // キューフ
 tail cover,2,/clothing
 cloth,2,/clothing2
+// IFフラット
+Jacket,2,/Jacket
+shirt,2,/shirt
+Cap,2,/Cap
 // (ninginbatake)フラットくん専用スクール水着
 Chibanyan/Swimsuit/SW,1,Flat Swimsuit/Cube
 // (銀河工房)フラット専用夏祭り衣装
