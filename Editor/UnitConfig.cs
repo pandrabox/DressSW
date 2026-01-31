@@ -33,12 +33,12 @@ namespace com.github.pandrabox.dresssw.editor
             // parka特殊処理: フラット2(Chest_Lあり)はType3、フラット3(なし)はType2
             if (Key == "parka")
             {
-                var parkaTransform = TargetTransforms().FirstOrDefault();
-                if (parkaTransform != null)
-                {
-                    bool isFlat2 = parkaTransform.Find("Chest_L") != null;
-                    Type = isFlat2 ? 3 : 2;
-                }
+                // Descriptor以下全体からChest_Lを探す（フラット2のみに存在）
+                var chestL = Descriptor.GetComponentsInChildren<Transform>(true)
+                    .FirstOrDefault(t => t.name == "Chest_L");
+                bool isFlat2 = chestL != null;
+                Debug.Log($"[DressSW] parka判定: Chest_L={chestL}, isFlat2={isFlat2}, Type={Type}→{(isFlat2 ? 3 : 2)}");
+                Type = isFlat2 ? 3 : 2;
             }
             
             if (Type==1 || Type==2 || Type==4)
