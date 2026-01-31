@@ -1,5 +1,5 @@
 ﻿// デフォルトのDressSW.txt (本来は各ProjectにDressSW.txtを作成して下さい　詳細はDressSWのReadme参照)
-// フラット2
+// フラット2・フラット3 (parkaはUnitConfig内で自動判別)
 parka,3,/parka
 pants,2,/pants
 // コモド

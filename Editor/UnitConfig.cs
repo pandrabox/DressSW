@@ -29,6 +29,18 @@ namespace com.github.pandrabox.dresssw.editor
             Key = key;
             Type = type;
             Items = items;
+            
+            // parka特殊処理: フラット2(Chest_Lあり)はType3、フラット3(なし)はType2
+            if (Key == "parka")
+            {
+                var parkaTransform = TargetTransforms().FirstOrDefault();
+                if (parkaTransform != null)
+                {
+                    bool isFlat2 = parkaTransform.Find("Chest_L") != null;
+                    Type = isFlat2 ? 3 : 2;
+                }
+            }
+            
             if (Type==1 || Type==2 || Type==4)
             {
                 Enable = TargetTransforms().FirstOrDefault()?.gameObject?.activeSelf ?? false;
